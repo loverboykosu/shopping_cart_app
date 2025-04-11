@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
+import cartItems from "../cartItems";
+import CartItem from "./CartItem";
 const CartContainer = () => {
-  const { amount } = useSelector((state) => state.cart);
-  console.log(amount);
-  if (amount > 1) {
+  const { amount, cartItems } = useSelector((state) => state.cart);
+  if (amount < 1) {
     return (
       <section className="cart">
         <header>
@@ -12,5 +13,26 @@ const CartContainer = () => {
       </section>
     );
   }
+  return (
+    <section className="cart">
+      <header>
+        <h2>買い物かご</h2>
+      </header>
+      <div>
+        {cartItems.map((item) => {
+          return <CartItem key={item.id} />;
+        })}
+      </div>
+      <footer>
+        <hr />
+        <div className="cart-total">
+          <h4>
+            合計 <span>円</span>
+          </h4>
+        </div>
+        <button className="btn clear-btn">全削除</button>
+      </footer>
+    </section>
+  );
 };
 export default CartContainer;
