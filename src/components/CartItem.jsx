@@ -1,6 +1,6 @@
 import { PlusIcon, MinusIcon } from "../HeroIcons";
 import { useDispatch } from "react-redux";
-import { removeItem } from "../features/cart/CartSlice.jsx";
+import { removeItem, increase } from "../features/cart/CartSlice.jsx";
 const CartItem = ({ id, img, title, price, amount }) => {
   const dispatch = useDispatch();
   return (
@@ -13,7 +13,7 @@ const CartItem = ({ id, img, title, price, amount }) => {
           削除
         </button>
       </div>
-      <button className="amount-btn">
+      <button className="amount-btn" onClick={() => dispatch(increase(id))}>
         <PlusIcon />
       </button>
       <p className="amount">{amount}</p>
