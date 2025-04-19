@@ -4,7 +4,7 @@ import CartItem from "./CartItem";
 import { clearCart } from "../features/cart/CartSlice";
 const CartContainer = () => {
   const dispatch = useDispatch();
-  const { amount, cartItems } = useSelector((state) => state.cart);
+  const { total, amount, cartItems } = useSelector((state) => state.cart);
   if (amount < 1) {
     return (
       <section className="cart">
@@ -29,7 +29,7 @@ const CartContainer = () => {
         <hr />
         <div className="cart-total">
           <h4>
-            合計 <span>円</span>
+            合計 <span>{total}円</span>
           </h4>
         </div>
         <button className="btn clear-btn" onClick={() => dispatch(clearCart())}>
